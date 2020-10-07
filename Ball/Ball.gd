@@ -44,9 +44,11 @@ func play_sound(sound):
 func _on_HUD_changed():
 	update_color()	
 
-func _physics_process(_delta):
 	if HUD.ball_trail:
-		pass
+		var c = $Color.duplicate()
+		c.rect_global_position = global_position
+		c.color = c.color.darkened(0.4)
+		get_node("/root/Game/Trail_Container").add_child(c)
 
 
 	var bodies = get_colliding_bodies()
